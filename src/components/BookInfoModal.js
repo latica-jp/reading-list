@@ -14,11 +14,13 @@ const bookInfoModal = props => {
         <CardItem>
           <Left>
             <Body cardBody>
-              <Image
-                source={{ uri: cover }}
-                style={styles.coverImage}
-                resizeMode="contain"
-              />
+              {cover && (
+                <Image
+                  source={{ uri: cover }}
+                  style={styles.coverImage}
+                  resizeMode="contain"
+                />
+              )}
               <Text>{author}</Text>
               <Text>{publisher}</Text>
               <Text>{isbn}</Text>
