@@ -1,3 +1,4 @@
+import { Linking } from 'react-native';
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
@@ -86,6 +87,9 @@ export const uploadBookData = () => {
         }
       );
       dispatch(uploadBookDataSuccess());
+
+      const { link } = result.data;
+      Linking.openURL(link);
     } catch (error) {
       dispatch(uploadBookDataFailed(error));
     }
