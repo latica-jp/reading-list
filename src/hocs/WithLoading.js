@@ -8,14 +8,13 @@ const withLoadingWrapper = WrappedComponent => {
   return class WithLoading extends Component {
     render() {
       return (
-        // ・<View> に style を適用し忘れて表示されず、さんざんハマる
-        // ・<Spinner> の前に this.props.loading && を付加しているのは
-        // 　react-native-loading-spinner-overlay が Alert と同時使用すると消えなくなる現象への workaround
-        //   https://github.com/joinspontaneous/react-native-loading-spinner-overlay/issues/30#issuecomment-417699195
-        <View style={{ flex: 1 }}>
+        // 修正履歴：View -> View で style に {flex: 1} を付加 → React.Fragment
+        // flex: 1 を入れないと WrappedComponent が表示されない →
+        // flex: 1 は表示に余計な影響が生じた →（いろいろ悩んで）React.Fragment で解決
+        <React.Fragment>
           {this.props.loading && <Spinner visible={this.props.loading} />}
           <WrappedComponent {...this.props} />
-        </View>
+        </React.Fragment>
       );
     }
   };

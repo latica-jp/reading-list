@@ -2,7 +2,6 @@ import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
 import * as wordpress from '../../services/wordpress';
-import { timeout } from 'rxjs/operator/timeout';
 
 export const clearBookData = () => {
   return {

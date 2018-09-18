@@ -70,17 +70,18 @@ class CameraModal extends Component {
         type={this.state.type}
         onPressClose={this.onPressClose}
       />
-    ) : (
-      <Text>No Permission</Text>
-    );
-    const bookInfoModal = (
+    ) : null;
+    // BookInfoMotal の isVisible のみだと
+    // onModalBackdropPress で summary を消したときに、一瞬内容が空で表示されるため、
+    // 表示そのものを消す
+    const bookInfoModal = this.props.summary !== '' && (
       <BookInfoModal
         isVisible={this.props.summary !== ''}
         summary={this.props.summary}
         onBackdropPress={this.onModalBackdropPress}
       />
     );
-    // NativeBase の Content は contentContainerStyle でスタイル指定
+    // Content は contentContainerStyle でスタイル指定
     return (
       <Container>
         <Content scrollEnabled={false} contentContainerStyle={{ flex: 1 }}>

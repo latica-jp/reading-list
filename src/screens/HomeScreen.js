@@ -1,24 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
-import {
-  Container,
-  Content,
-  Header,
-  Title,
-  Body,
-  Footer,
-  Button,
-  List,
-  ListItem,
-  Left,
-  Right,
-  Text,
-  Thumbnail,
-} from 'native-base';
+import { Container, Content } from 'native-base';
 import {
   HeaderWithMenuIcon,
-  BookList,
+  EmptyBookList,
   SwipeableBookList,
 } from '../components/';
 
@@ -42,11 +28,15 @@ class HomeScreen extends Component {
     return (
       <Container>
         <HeaderWithMenuIcon {...this.props} title="Home" />
-        <Content style={styles.content}>
-          <SwipeableBookList
-            {...this.props}
-            deleteBookdata={this.onDeleteBookdata}
-          />
+        <Content contentContainerStyle={styles.content}>
+          {this.props.summaries && this.props.summaries.length ? (
+            <SwipeableBookList
+              {...this.props}
+              deleteBookdata={this.onDeleteBookdata}
+            />
+          ) : (
+            <EmptyBookList />
+          )}
         </Content>
       </Container>
     );
@@ -55,17 +45,15 @@ class HomeScreen extends Component {
 
 const styles = StyleSheet.create({
   content: {
+    flex: 1,
     paddingTop: 10,
     paddingBottom: 10,
   },
 });
-const mapStateToProps = state => {
-  return { summaries: state.book.summaries };
-};
 
 export default connect(
-  mapStateToProps,
-  // ショートハンド（便利！！）下記と等価
+  state => ({ summaries: state.book.summaries }),
+  // mapDispatchToProps のショートハンド、下記と等価（便利！！）
   // dispatch => {
   //   return { signOut: () => dispatch(signOut()) };
   // }

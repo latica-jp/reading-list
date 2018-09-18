@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   summary: '',
-  summaries: [{ title: 'sample', author: 'sample', isbn: 'sample' }],
+  summaries: [],
   error: '',
 };
 
@@ -36,13 +36,9 @@ export const book = (state = initialState, action) => {
         ),
       };
     case actionTypes.UPLOAD_BOOKDATA_SUCCESS:
-      return {
-        ...state,
-      };
+      return state;
     case actionTypes.UPLOAD_BOOKDATA_FAILED:
-      return {
-        ...state,
-      };
+      return state;
     default:
       return state;
   }

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Header, Left, Body, Right, Title, Icon, Button } from 'native-base';
 
+import { WithLoading } from '../hocs/';
+
 import { uploadBookData } from '../store/actions';
 
 class HeaderWithMenuIcon extends Component {
@@ -41,4 +43,4 @@ export default connect(
     token: state.auth.token,
   }),
   { uploadBookData }
-)(HeaderWithMenuIcon);
+)(WithLoading(HeaderWithMenuIcon, ['UPLOAD_BOOKDATA']));
