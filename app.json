@@ -1,5 +1,9 @@
 {
   "expo": {
-    "sdkVersion": "30.0.0"
+    "sdkVersion": "30.0.0",
+    "name": "reading-list",
+    "slug": "reading-list",
+    "version": "0.1.0",
+    "description": ""
   }
 }

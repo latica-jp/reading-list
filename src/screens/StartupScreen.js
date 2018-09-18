@@ -17,13 +17,7 @@ class StartupScreen extends Component {
     return (
       <Container>
         <Content padder contentContainerStyle={styles.container}>
-          <Card>
-            <CardItem>
-              <Body style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                <Text>Starting up...</Text>
-              </Body>
-            </CardItem>
-          </Card>
+          <Text style={styles.text}>Starting up...</Text>
         </Content>
       </Container>
     );
@@ -34,6 +28,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    color: '#CCC',
   },
 });
 
