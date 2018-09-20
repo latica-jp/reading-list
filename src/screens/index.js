@@ -14,13 +14,21 @@ import { connect } from 'react-redux';
 import StartupScreen from './StartupScreen';
 import HomeScreen from './HomeScreen';
 import LoginScreen from './LoginScreen';
+import BookDetailScreen from './BookDetailScreen';
 
 import { CameraModal } from '../containers';
 import { SideDrawer, BottomTabBar } from '../components';
 
+const BookStackNavigator = createStackNavigator(
+  { Home: HomeScreen, BookDetail: BookDetailScreen },
+  {
+    initialRootName: 'Home',
+    headerMode: 'none',
+  }
+);
 const MainTabNavigator = createBottomTabNavigator(
   {
-    Home: HomeScreen,
+    Home: BookStackNavigator,
     // Barcode は通常の tab navigation ではなく、modal 表示の stack にしたい
     // => MainNavigator
   },

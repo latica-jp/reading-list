@@ -16,7 +16,7 @@ class SwipeableBookList extends Component {
           if (this.state.openKey === summary.isbn) {
             rowMap[summary.isbn].closeRow();
           } else {
-            Alert.alert('hello');
+            this.props.navigation.navigate('BookDetail', { ...summary });
           }
         }}
       >

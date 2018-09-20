@@ -2,6 +2,7 @@ import { Linking } from 'react-native';
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
+import * as bookSearch from '../../services/rakutenBookSearch';
 import * as wordpress from '../../services/wordpress';
 
 export const clearBookData = () => {
@@ -20,12 +21,12 @@ export const fetchBookData = isbn => {
   return async dispatch => {
     dispatch(fetchBookDataRequest());
     try {
-      const result = await axios.get(
-        `https://api.openbd.jp/v1/get?isbn=${isbn}`,
-        { timeout: 2000 }
-      );
-      const { summary } = result.data[0];
-      dispatch(fetchBookDataSucess(summary));
+      const summary = await bookSearch.fetchBookData(isbn);
+      if (summary) {
+        dispatch(fetchBookDataSucess(summary));
+      } else {
+        dispatch(fetchBookDataFailed('no data'));
+      }
     } catch (error) {
       dispatch(fetchBookDataFailed(error));
     }

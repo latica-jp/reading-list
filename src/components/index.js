@@ -8,3 +8,4 @@ export { default as HeaderWithMenuIcon } from './HeaderWithMenuIcon';
 export { default as SideDrawer } from './SideDrawer';
 export { default as SwipeableBookList } from './SwipeableBookList';
 export { default as EmptyBookList } from './EmptyBookList';
+export { default as ListItemDivider } from './ListItemDivider';
