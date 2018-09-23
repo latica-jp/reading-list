@@ -14,10 +14,11 @@ class StartupScreen extends Component {
   }
 
   render() {
+    const { t } = this.props.screenProps;
     return (
       <Container>
         <Content padder contentContainerStyle={styles.container}>
-          <Text style={styles.text}>Starting up...</Text>
+          <Text style={styles.text}>{t('Starting up...')}</Text>
         </Content>
       </Container>
     );

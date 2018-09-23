@@ -3,9 +3,10 @@ import { View, StyleSheet } from 'react-native';
 import { Text } from 'native-base';
 
 const emptyBookList = props => {
+  const { t } = props.screenProps;
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>No books yet.</Text>
+      <Text style={styles.text}>{t('No books yet.')}</Text>
     </View>
   );
 };

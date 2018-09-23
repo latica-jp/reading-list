@@ -16,6 +16,7 @@ class HeaderWithMenuIcon extends Component {
   };
 
   render() {
+    const { title } = this.props;
     return (
       <Header>
         <Left>
@@ -24,7 +25,7 @@ class HeaderWithMenuIcon extends Component {
           </Button>
         </Left>
         <Body>
-          <Title>{this.props.title}</Title>
+          <Title>{title}</Title>
         </Body>
         <Right>
           <Button transparent onPress={this.onWordpressButtonPress}>

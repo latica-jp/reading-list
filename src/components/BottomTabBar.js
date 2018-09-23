@@ -2,6 +2,7 @@ import React from 'react';
 import { Footer, FooterTab, Button, Text, Icon } from 'native-base';
 
 const bottomTabBar = props => {
+  const { t } = props.screenProps;
   return (
     <Footer>
       <FooterTab>
@@ -11,7 +12,7 @@ const bottomTabBar = props => {
           onPress={() => props.navigation.navigate('Home')}
         >
           <Icon type="MaterialCommunityIcons" name="library-books" />
-          <Text>Books</Text>
+          <Text>{t('Books')}</Text>
         </Button>
       </FooterTab>
       <FooterTab>
@@ -21,7 +22,7 @@ const bottomTabBar = props => {
           onPress={() => props.navigation.navigate('CameraModal')}
         >
           <Icon name="barcode" />
-          <Text>Barcode</Text>
+          <Text>{t('Barcode')}</Text>
         </Button>
       </FooterTab>
       {/* <FooterTab>

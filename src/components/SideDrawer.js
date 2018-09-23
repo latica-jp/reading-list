@@ -26,6 +26,7 @@ class SideDrawer extends Component {
   };
 
   render() {
+    const { t } = this.props.screenProps;
     return (
       <Container>
         <Content bounces={false} style={{ marginTop: 20 }}>
@@ -37,7 +38,9 @@ class SideDrawer extends Component {
                   name="wordpress"
                   style={{ fontSize: 26, width: 32 }}
                 />
-                <Text style={{ paddingLeft: 10 }}>Connect to Wordpress</Text>
+                <Text style={{ paddingLeft: 10 }}>
+                  {t('Connect to Wordpress')}
+                </Text>
               </Left>
             </ListItem>
             <ListItem button onPress={this.onSignOut}>
@@ -47,7 +50,7 @@ class SideDrawer extends Component {
                   name="logout"
                   style={{ fontSize: 26, width: 32 }}
                 />
-                <Text style={{ paddingLeft: 10 }}>Sign Out</Text>
+                <Text style={{ paddingLeft: 10 }}>{t('Sign Out')}</Text>
               </Left>
             </ListItem>
           </List>

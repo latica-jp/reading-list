@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+import { RAKUTEN_APPLICATION_ID } from 'react-native-dotenv';
+
 export const fetchBookData = async isbn => {
   const result = await axios.get(
     'https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404',
-    { params: { isbn, format: 'json', applicationId: '1069810816468830398' } }
+    { params: { isbn, format: 'json', applicationId: RAKUTEN_APPLICATION_ID } }
   );
   const { data } = result;
   if (result.data) {

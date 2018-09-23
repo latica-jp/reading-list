@@ -18,6 +18,9 @@ import {
 import { ListItemDivider } from '../components';
 
 const bookDetailScreen = props => {
+  const { t } = props.screenProps;
+
+  // getParam はフォールバックが効くので使ってみているが、もうちょっと簡潔に書きたい
   const title = props.navigation.getParam('title', '');
   const author = props.navigation.getParam('author', '');
   const publisher = props.navigation.getParam('publisher', '');
@@ -29,11 +32,11 @@ const bookDetailScreen = props => {
         <Left>
           <Button transparent onPress={() => props.navigation.goBack()}>
             <Icon name="arrow-back" />
-            <Text>Back</Text>
+            <Text>{t('Back')}</Text>
           </Button>
         </Left>
         <Body>
-          <Title>Book Detail</Title>
+          <Title>{t('Book Detail')}</Title>
         </Body>
         <Right />
       </Header>
@@ -46,19 +49,19 @@ const bookDetailScreen = props => {
           />
         )}
         <List>
-          <ListItemDivider text="TITLE" />
+          <ListItemDivider text={t('Title')} />
           <ListItem>
             <Text>{title}</Text>
           </ListItem>
-          <ListItemDivider text="AUTHOR" />
+          <ListItemDivider text={t('Author')} />
           <ListItem>
             <Text>{author}</Text>
           </ListItem>
-          <ListItemDivider text="PUBLISHER" />
+          <ListItemDivider text={t('Publisher')} />
           <ListItem>
             <Text>{publisher}</Text>
           </ListItem>
-          <ListItemDivider text="CAPTION" />
+          <ListItemDivider text={t('Caption')} />
           <ListItem>
             <Text>{itemCaption}</Text>
           </ListItem>

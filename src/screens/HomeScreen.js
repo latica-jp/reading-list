@@ -25,9 +25,10 @@ class HomeScreen extends Component {
   };
 
   render() {
+    const { t } = this.props.screenProps;
     return (
       <Container>
-        <HeaderWithMenuIcon {...this.props} title="Home" />
+        <HeaderWithMenuIcon {...this.props} title={t('Home')} />
         <Content contentContainerStyle={styles.content}>
           {this.props.summaries && this.props.summaries.length ? (
             <SwipeableBookList
@@ -35,7 +36,7 @@ class HomeScreen extends Component {
               deleteBookdata={this.onDeleteBookdata}
             />
           ) : (
-            <EmptyBookList />
+            <EmptyBookList {...this.props} />
           )}
         </Content>
       </Container>

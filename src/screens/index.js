@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   createReactNavigationReduxMiddleware,
   reduxifyNavigator,
@@ -36,7 +37,7 @@ const MainTabNavigator = createBottomTabNavigator(
     initialRootName: 'Home',
     tabBarPosition: 'bottom',
     swipeEnabled: false,
-    tabBarComponent: BottomTabBar,
+    tabBarComponent: props => <BottomTabBar {...props} />,
   }
 );
 
