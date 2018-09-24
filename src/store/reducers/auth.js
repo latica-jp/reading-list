@@ -1,33 +1,29 @@
 import * as actionTypes from '../actions/actionTypes';
 
-const initialState = { user: null, loading: false, token: null };
+const initialState = { user: null, token: null, error: null };
 
 export const auth = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SESSION_LOADING:
-      return { ...state, loading: true };
-    case actionTypes.RESTORE_SESSION_REQUEST:
-      return { ...state, loading: true };
     case actionTypes.RESTORE_SESSION_SUCCESS:
-      return { ...state, loading: false };
+      return { ...state, user: action.payload.user };
     case actionTypes.RESTORE_SESSION_FAILED:
-      return { ...state, loading: false };
-    case actionTypes.SIGNUP_USER_REQUEST:
-      return { ...state, loading: true };
-    case actionTypes.SIGNUP_USER_SUCCESS:
-      return { ...state, user: action.payload.user, loading: false };
-    case actionTypes.SIGNUP_USER_FAILED:
-      return { ...state, loading: false, error: action.payload.error };
-    case actionTypes.SIGNIN_USER_SUCCESS:
-      return { ...state, user: action.payload.user, loading: false };
-    case actionTypes.SIGNIN_USER_FAILED:
-      return { ...state, loading: false };
-    case actionTypes.LOGIN_WORDPRESS_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, error: action.payload.error };
+    case actionTypes.SIGNUP_SUCCESS:
+      return { ...state, user: action.payload.user };
+    case actionTypes.SIGNUP_FAILED:
+      return { ...state, error: action.payload.error };
+    case actionTypes.SIGNIN_SUCCESS:
+      return { ...state, user: action.payload.user };
+    case actionTypes.SIGNIN_FAILED:
+      return { ...state, error: action.payload.error };
+    case actionTypes.SIGNOUT_SUCCESS:
+      return { ...state, user: null };
+    case actionTypes.SIGNOUT_FAILED:
+      return { ...state, error: action.payload.error };
     case actionTypes.LOGIN_WORDPRESS_SUCCESS:
-      return { ...state, loading: false, token: action.payload.token };
+      return { ...state, token: action.payload.token };
     case actionTypes.LOGIN_WORDPRESS_FAILED:
-      return { ...state, loading: false, error: action.payload.error };
+      return { ...state, error: action.payload.error };
     default:
       return state;
   }

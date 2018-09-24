@@ -17,7 +17,8 @@ export const navigation = (state = initialState, action) => {
       );
       break;
     }
-    case actionTypes.RESTORE_SESSION_FAILED: {
+    case actionTypes.RESTORE_SESSION_FAILED:
+    case actionTypes.SIGNOUT_SUCCESS: {
       nextState = RootNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Login' }, state)
       );

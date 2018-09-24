@@ -5,6 +5,8 @@ import * as actionTypes from './actionTypes';
 import { auth } from '../../services/firebase';
 import { delayedAlert } from '../../Utils/utils';
 import { AuthSession } from 'expo';
+import { clearBookData } from './';
+import { getWordpressAccessToken } from '../../services/wordpress';
 
 export const restoreSession = () => {
   return dispatch => {
@@ -135,6 +137,7 @@ export const signOut = () => {
     dispatch(signOutRequest());
     try {
       await auth.signOut();
+      dispatch(clearBookData());
       dispatch(signOutSuccess());
     } catch (error) {
       dispatch(signOutFailed(error));
@@ -164,27 +167,13 @@ export const signOutFailed = error => {
 export const loginWordpress = () => {
   return async dispatch => {
     dispatch(loginWordpressRequest());
-
-    const baseUrl = 'https://reading-list.latica.jp';
-    const redirectUrlEncoded = encodeURIComponent(AuthSession.getRedirectUrl());
-    const clientId = 'vmcZjRlPL2Nk0qiFNohvpMZhNOB6cSiHevGxn2n9';
-    const clientSecret = '4bt4BMKpa1UzOUQBIsIVk1Czwj7Tmv2qGwviigHt';
-    console.log(AuthSession.getRedirectUrl());
     try {
-      let result = await AuthSession.startAsync({
-        authUrl: `${baseUrl}/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUrlEncoded}&response_type=code`,
-      });
-      const { code } = result.params;
-      result = await axios.post(`${baseUrl}/oauth/token`, {
-        client_id: clientId,
-        client_secret: clientSecret,
-        redirect_uri: redirectUrlEncoded,
-        code: code,
-        grant_type: 'authorization_code',
-      });
-      const { access_token: token } = result.data;
-
-      dispatch(loginWordpressSuccess(token));
+      const token = await getWordpressAccessToken();
+      if (token) {
+        dispatch(loginWordpressSuccess(token));
+      } else {
+        dispatch(loginWordpressFailed('error'));
+      }
     } catch (error) {
       dispatch(loginWordpressFailed(error));
     }
