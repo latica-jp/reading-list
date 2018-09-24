@@ -7,13 +7,13 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 ## 機能
 
 - 書籍のバーコード（ISBN）を読み取り、書籍情報を取得してリストに追加します。
-- Wordpress にログインして、 書籍リストを記事として投稿します。
+- Wordpress にログインして、書籍リストを記事として投稿します。
 
 ## Wordpress 認証
 
 - [WP OAuth Server](https://wordpress.org/plugins/oauth2-provider/) を使用して Wordpress を OAuth サーバとして使用することが前提です。
 
-## 動作サンプル（Expo）
+## 動作サンプル（Expo）
 
 - [Expo](https://expo.io/@latica/reading-list)
   - Expo アプリをダウンロード、上記ページに表示される QR コードをスキャンすると動作を確認できます。
