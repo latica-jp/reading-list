@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Container, Content, Text, Button } from 'native-base';
+import { Container, Content } from 'native-base';
 import { Camera, Permissions } from 'expo';
 
 import BarCodeReader from '../components/BarCodeReader';

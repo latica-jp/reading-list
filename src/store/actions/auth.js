@@ -1,10 +1,7 @@
 import * as firebase from 'firebase';
-import axios from 'axios';
-import { Alert } from 'react-native';
 import * as actionTypes from './actionTypes';
 import { auth } from '../../services/firebase';
 import { delayedAlert } from '../../Utils/utils';
-import { AuthSession } from 'expo';
 import { clearBookData } from './';
 import { getWordpressAccessToken } from '../../services/wordpress';
 

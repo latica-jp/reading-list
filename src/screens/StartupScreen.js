@@ -4,7 +4,6 @@ import { restoreSession } from '../store/actions/auth';
 
 import { StyleSheet } from 'react-native';
 import { Container, Content, Text, Card, CardItem, Body } from 'native-base';
-import WithLoading from '../hocs/WithLoading';
 
 class StartupScreen extends Component {
   componentDidMount() {

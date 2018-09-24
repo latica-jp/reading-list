@@ -6,7 +6,6 @@ import {
   List,
   ListItem,
   Left,
-  Right,
   Text,
   Icon,
 } from 'native-base';
