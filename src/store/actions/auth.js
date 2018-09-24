@@ -1,9 +1,12 @@
 import * as firebase from 'firebase';
 import * as actionTypes from './actionTypes';
 import { auth } from '../../services/firebase';
-import { delayedAlert } from '../../Utils/utils';
+import * as utils from '../../Utils/utils';
 import { clearBookData } from './';
 import { getWordpressAccessToken } from '../../services/wordpress';
+import i18n from '../../config/i18n';
+
+const t = i18n.getFixedT();
 
 export const restoreSession = () => {
   return dispatch => {
@@ -39,6 +42,9 @@ export const restoreSessionSuccess = user => {
 export const restoreSessionFailed = () => {
   return {
     type: actionTypes.RESTORE_SESSION_FAILED,
+    payload: {
+      error: 'restore session failed',
+    },
   };
 };
 
@@ -136,6 +142,7 @@ export const signOut = () => {
       await auth.signOut();
       dispatch(clearBookData());
       dispatch(signOutSuccess());
+      utils.delayedAlert(t('Authentication'), t('Signed Out.'));
     } catch (error) {
       dispatch(signOutFailed(error));
     }
@@ -168,6 +175,7 @@ export const loginWordpress = () => {
       const token = await getWordpressAccessToken();
       if (token) {
         dispatch(loginWordpressSuccess(token));
+        utils.delayedAlert(t('Wordpress Link'), t('Logged in to Wordpress.'));
       } else {
         dispatch(loginWordpressFailed('error'));
       }

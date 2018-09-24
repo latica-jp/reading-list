@@ -4,6 +4,11 @@ import axios from 'axios';
 
 import * as bookSearch from '../../services/rakutenBookSearch';
 import * as wordpress from '../../services/wordpress';
+import * as utils from '../../Utils/utils';
+
+import i18n from '../../config/i18n';
+
+const t = i18n.getFixedT();
 
 export const clearBookData = () => {
   return {
@@ -90,8 +95,16 @@ export const uploadBookData = () => {
       dispatch(uploadBookDataSuccess());
 
       const { link } = result.data;
-      Linking.openURL(link);
+      utils.delayedAlert(
+        t('Wordpress Link'),
+        t('Uploaded book data to Wordpress.'),
+        [
+          { text: t('Cancel') },
+          { text: t('Show'), onPress: () => Linking.openURL(link) },
+        ]
+      );
     } catch (error) {
+      console.log(error);
       dispatch(uploadBookDataFailed(error));
     }
   };
