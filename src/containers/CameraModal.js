@@ -30,7 +30,7 @@ class CameraModal extends Component {
     });
   }
 
-  onBarCodeRead = async ({ data: isbn }) => {
+  onBarCodeScanned = async isbn => {
     // 書籍には2段のISBNコードがついている；1段目のみ受け付ける
     // 同じ書籍がスキャン済みの場合は無視する
     // またバーコードスキャンは継続的に行われるので、書籍検索が終了するまでスキャンを停止
@@ -66,7 +66,7 @@ class CameraModal extends Component {
           justifyContent: 'space-between',
         }}
         {...this.props}
-        onBarCodeRead={this.onBarCodeRead}
+        onBarCodeScanned={this.onBarCodeScanned}
         type={this.state.type}
         onPressClose={this.onPressClose}
       />
